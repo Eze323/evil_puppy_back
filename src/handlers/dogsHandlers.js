@@ -3,11 +3,19 @@ const { createDog,getDogByID,getAllDogs,searchDogByName } = require("../controll
 
 
 const getDogsHandler = async (req, res) => {
+    try {
     const { name } = req.query;
 
     const result = name ? await searchDogByName(name): await getAllDogs();
 
-    res.status(200).send(result);
+    res.status(200).json(result);
+    //? res.status(404).send("No se puede encontrar Dog");
+    
+   }catch (error) {
+    console.log(error)
+    res.status(500).json(error.message);
+    
+  }
 };
 
 
@@ -38,6 +46,7 @@ const createDogHandler = async (req, res) => {
     }
 
 }
+
 
 
 module.exports = { getDogsHandler, getDogHandler, createDogHandler };
