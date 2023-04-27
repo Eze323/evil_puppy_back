@@ -6,6 +6,7 @@ const getDogsHandler = async (req, res) => {
     try {
     const { name } = req.query;
     console.log('Estoy pasando por el handler:' +name);
+    console.log(req.query);
 
     const result = name ? await searchDogByName(name): await getAllDogs();
 
@@ -13,7 +14,7 @@ const getDogsHandler = async (req, res) => {
     //? res.status(404).send("No se puede encontrar Dog");
     
    }catch (error) {
-    console.log(error)
+   // console.log(error)
     res.status(500).json(error.message);
     
   }
