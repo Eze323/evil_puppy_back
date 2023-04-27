@@ -2,6 +2,7 @@ const axios = require('axios');
 const {Dog,Temperament}= require("../db");
 const {Op} = require("sequelize");
 const URL = 'https://api.thedogapi.com/v1/breeds/';
+axios.defaults.baseURL= 'https://evilpuppyback-evil-puppy.up.railway.app/';
 
 const cleanArray = (array) =>
     array.map(elemento=>{

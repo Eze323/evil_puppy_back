@@ -1,8 +1,8 @@
 const { Router } = require('express');
 const dogsRouter = require('./dogsRouter');
 const { getTemperamentHandler } = require('../handlers/temperamentHandler');
-import axios from 'axios';
-axios.defaults.baseURL= 'https://evilpuppyback-evil-puppy.up.railway.app/';
+//const axios =require('axios');
+
 
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
