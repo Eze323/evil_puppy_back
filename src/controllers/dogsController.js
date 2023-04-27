@@ -74,6 +74,7 @@ const createDog = async (name, image, height, weight, lifeSpan, temperament) => 
   
 
 const getDogByID = async (idRaza, source) => {
+  try {
     let dog='';
     
         if(source === "API"){
@@ -100,8 +101,16 @@ const getDogByID = async (idRaza, source) => {
 
         }
 
-    return dog;
+    return dog 
+    ? res.json(dog)
+    ? res.status(404).send("No se puede encontrar Dog");
             
+    
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json(error.message);
+    
+  }
 }
 
 const searchDogByName= async (name) =>{
