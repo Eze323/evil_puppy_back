@@ -9,7 +9,7 @@ const getDogsHandler = async (req, res) => {
 
     const result = name ? await searchDogByName(name): await getAllDogs();
 
-    res.status(200).json(result);
+    res.status(200).send(result);
     //? res.status(404).send("No se puede encontrar Dog");
     
    }catch (error) {
