@@ -107,31 +107,31 @@ const getDogByID = async (idRaza, source) => {
 const searchDogByName= async (name) =>{
     //busca en la bdd
             // Buscamos los perros que coincidan con el nombre
-            const dogs = await Dog.findAll({
-              where: {
-                name: { [Op.like]: `%${name}%` },
-              },
-              include: {
-                model: Temperament,
-                attributes: ['name'],
-                through: { attributes: [] },
-              },
-            });
+            // const dogs = await Dog.findAll({
+            //   where: {
+            //     name: { [Op.like]: `%${name}%` },
+            //   },
+            //   include: {
+            //     model: Temperament,
+            //     attributes: ['name'],
+            //     through: { attributes: [] },
+            //   },
+            // });
           
-            // Mapeamos los resultados para incluir los nombres de los temperamentos en cada perro
-            const dogsWithTemperaments = dogs.map((dog) => {
-              const temperaments = dog.temperaments.map((temp) => temp.name);
-              return {
-                id: dog.id,
-                name: dog.name,
-                height: dog.height,
-                weight: dog.weight,
-                image: dog.image,
-                lifeSpan: dog.lifeSpan,
-                temperament: temperaments.join(', '),
-                created: dog.created,
-              };
-            });
+            // // Mapeamos los resultados para incluir los nombres de los temperamentos en cada perro
+            // const dogsWithTemperaments = dogs.map((dog) => {
+            //   const temperaments = dog.temperaments.map((temp) => temp.name);
+            //   return {
+            //     id: dog.id,
+            //     name: dog.name,
+            //     height: dog.height,
+            //     weight: dog.weight,
+            //     image: dog.image,
+            //     lifeSpan: dog.lifeSpan,
+            //     temperament: temperaments.join(', '),
+            //     created: dog.created,
+            //   };
+            // });
     
     //busca en la api
      //buscar en api 
@@ -145,7 +145,8 @@ const searchDogByName= async (name) =>{
 
 
 
-    return [...dogsWithTemperaments,...apiDogs];
+    //return [...dogsWithTemperaments,...apiDogs];
+    return [...apiDogs];
 }
 
 const getAllDogs = async () => {
