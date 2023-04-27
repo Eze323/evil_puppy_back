@@ -5,6 +5,7 @@ const { createDog,getDogByID,getAllDogs,searchDogByName } = require("../controll
 const getDogsHandler = async (req, res) => {
     try {
     const { name } = req.query;
+    console.log('Estoy pasando por el handler:' +name);
 
     const result = name ? await searchDogByName(name): await getAllDogs();
 
