@@ -2,8 +2,8 @@ const axios = require('axios');
 const {Dog,Temperament}= require("../db");
 const {Op} = require("sequelize");
 const URL = 'https://api.thedogapi.com/v1/breeds/';
-axios.defaults.baseURL= 'https://evilpuppyback-evil-puppy.up.railway.app/';
-console.log(axios);
+//axios.defaults.baseURL= 'https://evilpuppyback-evil-puppy.up.railway.app/';
+//console.log(axios);
 const cleanArray = (array) =>
     array.map(elemento=>{
         return {
@@ -109,14 +109,19 @@ const searchDogByName= async (name) =>{
             // Buscamos los perros que coincidan con el nombre
             const dogs = await Dog.findAll({
               where: {
-                name: { [Op.like]: `%${name}%` },
+                name: {
+                  [Op.like]: `%${name}%`,
+                },
               },
-              include: {
-                model: Temperament,
-                attributes: ['name'],
-                through: { attributes: [] },
-              },
+              include: [
+                {
+                  model: Temperament,
+                  attributes: ['name'],
+                  through: { attributes: [] },
+                },
+              ],
             });
+            
           
             // // Mapeamos los resultados para incluir los nombres de los temperamentos en cada perro
             const dogsWithTemperaments = dogs.map((dog) => {
