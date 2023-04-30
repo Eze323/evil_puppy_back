@@ -111,7 +111,7 @@ const searchDogByName= async (name) =>{
             const dogs = await Dog.findAll({
               where: {
                 name: {
-                  [Op.like]: `${name.toLowerCase()}`
+                  [Op.like]: `%${name.toLowerCase()}`
                 },
               },
               include: [
