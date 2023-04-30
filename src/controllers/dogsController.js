@@ -110,9 +110,9 @@ const searchDogByName= async (name) =>{
             console.log('llego a la funcionbuscar por nombre'+name);
             const dogs = await Dog.findAll({
               where: {
-                name: 
-                  `%${name.toLowerCase()}`
-                ,
+                name: {
+                  [Op.like]: `%${name.toLowerCase()}%`
+                },
               },
               include: [
                 {
