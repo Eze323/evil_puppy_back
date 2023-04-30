@@ -107,11 +107,11 @@ const getDogByID = async (idRaza, source) => {
 const searchDogByName= async (name) =>{
     //busca en la bdd
             // Buscamos los perros que coincidan con el nombre
-            console.log('llego a la funcionbuscar por nombre');
+            console.log('llego a la funcionbuscar por nombre'+name);
             const dogs = await Dog.findAll({
               where: {
                 name: {
-                  [Op.like]:[ `%${name.toLowerCase()}%`]
+                  [Op.substring]: `${name.toLowerCase()}`
                 },
               },
               include: [
