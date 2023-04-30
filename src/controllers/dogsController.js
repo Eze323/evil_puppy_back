@@ -111,7 +111,7 @@ const searchDogByName= async (name) =>{
             const dogs = await Dog.findAll({
               where: {
                 name: {
-                  [Op.substring]: `${name.toLowerCase()}`
+                  [Op.like]: `%${name.toLowerCase()}%`
                 },
               },
               include: [
@@ -122,8 +122,8 @@ const searchDogByName= async (name) =>{
                 },
               ],
             });
-            
-          
+            console.log(dogs);
+          if(dogs.legnth>0){//si existen perros buscar sus temperamentos
             // // Mapeamos los resultados para incluir los nombres de los temperamentos en cada perro
             const dogsWithTemperaments = dogs.map((dog) => {
               const temperaments = dog.temperaments.map((temp) => temp.name);
@@ -138,7 +138,7 @@ const searchDogByName= async (name) =>{
                 created: dog.created,
               };
             });
-    
+          }
     //busca en la api
      //buscar en api 
      
@@ -149,9 +149,13 @@ const searchDogByName= async (name) =>{
             
     const apiDogs=await cleanArray3(apiDogsRaw);
 
+        if(dogs.legnth>0){
+            return [...dogsWithTemperaments,...apiDogs];
+        }else{
+            return [...apiDogs];
+        }
+  
 
-  //return [...apiDogs];
-    return [...dogsWithTemperaments,...apiDogs];
     
 }
 
