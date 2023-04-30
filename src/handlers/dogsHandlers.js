@@ -5,7 +5,7 @@ const { createDog,getDogByID,getAllDogs,searchDogByName } = require("../controll
 const getDogsHandler = async (req, res) => {
     try {
     const { name } = req.query;
-    const result = name ? await searchDogByName(name.toLowerCase()): await getAllDogs();
+    const result = name ? await searchDogByName(name): await getAllDogs();
 
     res.status(200).send(result);
     //? res.status(404).send("No se puede encontrar Dog");
