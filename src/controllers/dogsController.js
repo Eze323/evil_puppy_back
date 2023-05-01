@@ -1,7 +1,6 @@
 const axios = require('axios');
 const {Dog,Temperament}= require("../db");
 const {Op} = require("sequelize");
-import "dotenv/config";
 const accessKey = process.env.ACCESS_TOKEN;
 const apikey = process.env.api_key;
 const URL = 'https://api.thedogapi.com/v1/breeds/';
