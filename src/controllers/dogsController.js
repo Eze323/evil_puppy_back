@@ -1,8 +1,25 @@
 const axios = require('axios');
 const {Dog,Temperament}= require("../db");
 const {Op} = require("sequelize");
+import "dotenv/config";
+const accessKey = process.env.ACCESS_TOKEN;
+const apikey = process.env.api_key;
 const URL = 'https://api.thedogapi.com/v1/breeds/';
-//axios.defaults.baseURL= 'https://evilpuppyback-evil-puppy.up.railway.app/';
+
+const config = {
+  headers: {
+    'Content-Type': 'application/json',
+    'x-api-key': `${accessKey}`,
+    'api_key':`${apikey}`
+  },
+};
+
+
+
+
+
+
+axios.defaults.baseURL= 'https://evilpuppyback-evil-puppy.up.railway.app/';
 //console.log(axios);
 const cleanArray = (array) =>
     array.map(elemento=>{
@@ -77,7 +94,7 @@ const getDogByID = async (idRaza, source) => {
     let dog='';
     
         if(source === "API"){
-            let apiDogs=(await axios.get(`https://api.thedogapi.com/v1/breeds/`)).data;
+            let apiDogs=(await axios.get(`https://api.thedogapi.com/v1/breeds/`,config)).data;
             
             dog= cleanArray(apiDogs.filter(dogui=>dogui.id==idRaza));
             dog=dog[0];
@@ -141,10 +158,12 @@ const searchDogByName= async (name) =>{
           //}
     //busca en la api
      //buscar en api 
-     
+  
+  
      const apiDogsRaw= (
-        await axios.get(`https://api.thedogapi.com/v1/breeds/search?q=${name}`)
-    ).data;
+        await axios.get(`https://api.thedogapi.com/v1/breeds/search?q=${name}`,config)
+    ).then(response => console.log(response.data))
+    .catch(error => console.log('error', error));
     //const apiDogsRaw=(await axios.get(`https://api.thedogapi.com/v1/breeds/`)).data;
             
     const apiDogs=await cleanArray3(apiDogsRaw);
