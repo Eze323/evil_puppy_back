@@ -193,7 +193,7 @@ const getAllDogs = async () => {
   // Buscar en la API
   const apiDogsRaw = (
     await axios.get(URL,config)
-  ).then(response =>response.data).data
+  ).data
   .catch(error => console.log('error', error));
   const apiDogs = cleanArray(apiDogsRaw);
 
