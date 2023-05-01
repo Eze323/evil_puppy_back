@@ -162,13 +162,13 @@ const searchDogByName= async (name) =>{
      const apiDogsRaw= (
         await axios.get(`https://api.thedogapi.com/v1/breeds/search?q=${name}`,config)
     ).data;
-    console.log(apiDogsRaw);
+   
     //const apiDogsRaw=(await axios.get(`https://api.thedogapi.com/v1/breeds/`)).data;
             
     const apiDogs=await cleanArray3(apiDogsRaw);
 console.log(apiDogs);
     
-            return [...dogsWithTemperaments,...apiDogs];
+            return [apiDogs];
    
 }
 
