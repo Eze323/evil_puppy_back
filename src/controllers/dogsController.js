@@ -161,8 +161,7 @@ const searchDogByName= async (name) =>{
   
      const apiDogsRaw= (
         await axios.get(`https://api.thedogapi.com/v1/breeds/search?q=${name}`,config)
-    ).then(response =>response.data)
-    .catch(error => console.log('error', error));
+    ).data;
     //const apiDogsRaw=(await axios.get(`https://api.thedogapi.com/v1/breeds/`)).data;
             
     const apiDogs=await cleanArray3(apiDogsRaw);
@@ -193,8 +192,7 @@ const getAllDogs = async () => {
   // Buscar en la API
   const apiDogsRaw = (
     await axios.get(URL,config)
-  ).data
-  .catch(error => console.log('error', error));
+  ).data;
   const apiDogs = cleanArray(apiDogsRaw);
 
   // Unir los resultados
