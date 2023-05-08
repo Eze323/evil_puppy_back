@@ -168,7 +168,7 @@ const searchDogByName= async (name) =>{
     const apiDogs=await cleanArray3(apiDogsRaw);
 console.log(apiDogs);
     
-            return [apiDogs];
+            return [...dogsWithTemperaments,...apiDogs];
    
 }
 

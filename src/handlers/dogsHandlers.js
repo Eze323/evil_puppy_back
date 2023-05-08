@@ -36,10 +36,16 @@ const getDogHandler = async (req, res) => {
 const createDogHandler = async (req, res) => {
     //res.send(`Estoy por crear un perro con estos datos: ${name}- ${image}- ${height}- ${width} - ${lifeSpan} - ${temperament}`);
     try {
-        const { name, image, height, weight, lifeSpan, temperament } = req.body;
-
-        const newDog = createDog(name.toLowerCase(), image, height, weight, lifeSpan, temperament);
-        res.status(201).send("Creado exitosamente");
+         //validar que los datos 
+         const { name, image, height, weight, lifeSpan, temperament } = req.body;
+         if(name!=='' && image!=='' && weight!=='' && height!=='' && lifeSpan!=''&& temperament.length>0){
+ 
+             const newDog = createDog(name.toLowerCase(), image, height, weight, lifeSpan, temperament);
+             res.status(201).send("Creado exitosamente");
+         }else{
+             
+             res.status(400).send({error:('Datos no válidos')})
+         }
     } catch (error) {
         res.status(400).send({ error: error.message })
     }
